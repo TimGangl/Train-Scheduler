@@ -15,6 +15,8 @@ var database = firebase.database();
 //create function to add info to variable
 //on click of choo choo take info from form to firebase 
 $("#add-train-btn").on("click", function (event) {
+  var trainSound = new Audio("assets/images/train-horn.mp3");
+  trainSound.play();
   event.preventDefault();
 
   var trainName = $("#train-name-input").val().trim();
@@ -58,7 +60,7 @@ database.ref().on("child_added", function (childSnapshot) {
   var firstTimeConverted = moment.unix(trainTime, "hh:mm A").subtract(1, "years");
   //current time
   var currentTime = moment();
-
+  console.log(currentTime);
   //compare train time to current time
   var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
 
